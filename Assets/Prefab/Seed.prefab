@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6249771023527973991}
   - component: {fileID: 6152537993508035374}
   - component: {fileID: 2970471940574694417}
+  - component: {fileID: 7960644434391306737}
   m_Layer: 0
   m_Name: Seed
   m_TagString: Untagged
@@ -112,3 +113,17 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7960644434391306737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1379875645139063990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 678d637876e59794c8ad6b81592b26f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlantGrowth
+  timeToRipe: 5
+  timeToOverripe: 5
