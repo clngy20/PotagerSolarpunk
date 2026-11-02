@@ -6,11 +6,13 @@ public class PlantGrowth : MonoBehaviour
     {
         Seed,
         Ripe,
-        Overripe
+        Overripe,
+        Burst
     }
 
     [SerializeField] private float timeToRipe = 5f; //Secondes avant d'être mûr
     [SerializeField] private float timeToOverripe = 5f; //Secondes de plus avant de pourrir
+    [SerializeField] private float timeToBurst = 5f; //Secondes de plus avant d'exploser
 
     public GrowthState CurrentState { get; private set; } = GrowthState.Seed;
 
@@ -39,6 +41,9 @@ public class PlantGrowth : MonoBehaviour
             case GrowthState.Ripe when timer >= timeToRipe + timeToOverripe:
                 SetState(GrowthState.Overripe);
                 break;
+            case GrowthState.Overripe when timer>= timeToRipe + timeToOverripe + timeToBurst:
+                SetState(GrowthState.Burst);
+                break;
         }
     }
 
@@ -47,6 +52,18 @@ public class PlantGrowth : MonoBehaviour
         CurrentState = newState;
         Debug.Log($"{name} -> {newState}", this);
         ApplyColor(newState);
+
+        if (newState == GrowthState.Burst)
+        {
+            Burst();
+        }
+    }
+
+    //Destruction de la graine (légume plus tard)
+    private void Burst()
+    {
+        // Plus tard : son et particules d'éclatement ici
+        Destroy(gameObject);
     }
 
     private void ApplyColor(GrowthState state)
