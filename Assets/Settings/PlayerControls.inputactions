@@ -25,6 +25,16 @@
                     "interactions": "",
                     "initialStateCheck": false,
                     "priority": 0
+                },
+                {
+                    "name": "Water",
+                    "type": "Button",
+                    "id": "0b378b72-3727-40d1-a7d4-f6b6f5e84d25",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
                 }
             ],
             "bindings": [
@@ -84,7 +94,7 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "Stick_Manette",
+                    "name": "Stick",
                     "id": "47734e3d-ed5b-43a9-9aeb-d1628f9d6388",
                     "path": "2DVector",
                     "interactions": "",
@@ -150,7 +160,7 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "Fleche_Manette",
+                    "name": "Fleche",
                     "id": "80431385-42b6-4f0f-88b1-b2724258bd9e",
                     "path": "2DVector",
                     "interactions": "",
@@ -223,6 +233,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Plant",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b443e2b4-dad5-42b2-b620-dd6db70b0738",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Water",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -111,6 +111,16 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""initialStateCheck"": false,
                     ""priority"": 0
+                },
+                {
+                    ""name"": ""Water"",
+                    ""type"": ""Button"",
+                    ""id"": ""0b378b72-3727-40d1-a7d4-f6b6f5e84d25"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false,
+                    ""priority"": 0
                 }
             ],
             ""bindings"": [
@@ -170,7 +180,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""Stick_Manette"",
+                    ""name"": ""Stick"",
                     ""id"": ""47734e3d-ed5b-43a9-9aeb-d1628f9d6388"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
@@ -236,7 +246,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""Fleche_Manette"",
+                    ""name"": ""Fleche"",
                     ""id"": ""80431385-42b6-4f0f-88b1-b2724258bd9e"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
@@ -311,6 +321,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Plant"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b443e2b4-dad5-42b2-b620-dd6db70b0738"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Water"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -321,6 +342,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Plant = m_Player.FindAction("Plant", throwIfNotFound: true);
+        m_Player_Water = m_Player.FindAction("Water", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
@@ -403,6 +425,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Plant;
+    private readonly InputAction m_Player_Water;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -422,6 +445,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/Plant".
         /// </summary>
         public InputAction @Plant => m_Wrapper.m_Player_Plant;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Water".
+        /// </summary>
+        public InputAction @Water => m_Wrapper.m_Player_Water;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -454,6 +481,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Plant.started += instance.OnPlant;
             @Plant.performed += instance.OnPlant;
             @Plant.canceled += instance.OnPlant;
+            @Water.started += instance.OnWater;
+            @Water.performed += instance.OnWater;
+            @Water.canceled += instance.OnWater;
         }
 
         /// <summary>
@@ -471,6 +501,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Plant.started -= instance.OnPlant;
             @Plant.performed -= instance.OnPlant;
             @Plant.canceled -= instance.OnPlant;
+            @Water.started -= instance.OnWater;
+            @Water.performed -= instance.OnWater;
+            @Water.canceled -= instance.OnWater;
         }
 
         /// <summary>
@@ -525,5 +558,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnPlant(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Water" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnWater(InputAction.CallbackContext context);
     }
 }

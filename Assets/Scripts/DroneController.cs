@@ -9,6 +9,9 @@ public class DroneController : MonoBehaviour
     [SerializeField] private GameObject seedPrefab; // Prefab de la graine à planter
     [SerializeField] private float groundY = 0.1f; // Hauteur (Y) à laquelle la graine sera plantée
 
+    [SerializeField] private ParticleSystem waterParticles;
+    [SerializeField] private float waterRadius = 0.5f;
+
     private Vector2 moveDirection;
 
     private void Awake()
@@ -31,6 +34,7 @@ public class DroneController : MonoBehaviour
     private void Update()
     {
         MoveDrone();
+        HandleWatering();
     }
 
     private void MoveDrone()
@@ -52,5 +56,37 @@ public class DroneController : MonoBehaviour
         Vector3 seedPosition = new Vector3(transform.position.x, groundY, transform.position.z);
         Instantiate(seedPrefab, seedPosition, Quaternion.identity);
 
+    }
+
+    //WATER
+    private void HandleWatering()
+    {
+        bool isWatering = controls.Player.Water.IsPressed(); // Vérifie si le bouton d'arrosage est enfoncé
+        if (isWatering && !waterParticles.isPlaying)
+        {
+            waterParticles.Play();
+        }
+        else if (!isWatering && waterParticles.isPlaying)
+        {
+            waterParticles.Stop();
+        }
+
+        if (!isWatering) return;
+
+        Vector3 center = new Vector3(transform.position.x, groundY, transform.position.z);
+        Collider[] hits = Physics.OverlapSphere(center, waterRadius);
+
+        foreach (Collider hit in hits)
+        {
+            if(hit.TryGetComponent(out PlantGrowth plant))
+            {
+                plant.Water();
+            }
+        }
+    }
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(new Vector3(transform.position.x, groundY, transform.position.z), waterRadius);
     }
 }

@@ -107,9 +107,9 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -128,3 +128,6 @@ MonoBehaviour:
   timeToRipe: 5
   timeToOverripe: 5
   timeToBurst: 5
+  seedColor: {r: 1, g: 1, b: 1, a: 1}
+  ripeColor: {r: 0, g: 1, b: 0, a: 1}
+  overripeColor: {r: 0.5, g: 0.3, b: 0, a: 1}

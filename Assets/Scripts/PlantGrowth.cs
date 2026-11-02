@@ -13,6 +13,7 @@ public class PlantGrowth : MonoBehaviour
     [SerializeField] private float timeToRipe = 5f; //Secondes avant d'être mûr
     [SerializeField] private float timeToOverripe = 5f; //Secondes de plus avant de pourrir
     [SerializeField] private float timeToBurst = 5f; //Secondes de plus avant d'exploser
+    [SerializeField] private float waterBonusPerSecond = 1f;
 
     [SerializeField] private Color seedColor = Color.white;
     [SerializeField] private Color ripeColor = Color.green;
@@ -68,6 +69,14 @@ public class PlantGrowth : MonoBehaviour
     {
         // Plus tard : son et particules d'éclatement ici
         Destroy(gameObject);
+    }
+
+    public void Water()
+    {
+        if(CurrentState == GrowthState.Seed)
+        {
+            timer += waterBonusPerSecond * Time.deltaTime;
+        }
     }
 
     private void ApplyColor(GrowthState state)
