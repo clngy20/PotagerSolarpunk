@@ -14,6 +14,10 @@ public class PlantGrowth : MonoBehaviour
     [SerializeField] private float timeToOverripe = 5f; //Secondes de plus avant de pourrir
     [SerializeField] private float timeToBurst = 5f; //Secondes de plus avant d'exploser
 
+    [SerializeField] private Color seedColor = Color.white;
+    [SerializeField] private Color ripeColor = Color.green;
+    [SerializeField] private Color overripeColor = new Color(0.5f, 0.3f, 0f);
+
     public GrowthState CurrentState { get; private set; } = GrowthState.Seed;
 
     private float timer;
@@ -70,9 +74,9 @@ public class PlantGrowth : MonoBehaviour
     {
         rend.material.color = state switch
         {
-            GrowthState.Ripe => Color.green,
-            GrowthState.Overripe => new Color(0.5f, 0.3f, 0f), //marron
-            _ => Color.white //Couleur par défaut pour l'état Seed
+            GrowthState.Ripe => ripeColor,
+            GrowthState.Overripe => overripeColor,
+            _ => seedColor
         };
     }
 }

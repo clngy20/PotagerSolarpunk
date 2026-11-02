@@ -509,7 +509,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DroneController
   moveSpeed: 5
-  seedPrefab: {fileID: 1379875645139063990, guid: 578f2dd725fc73649a4db72dfda69ce5, type: 3}
+  seedPrefab: {fileID: 5164064435309827396, guid: 4e4c236407b3c444c866599bd1a5d46e, type: 3}
   groundY: 0.1
 --- !u!1 &832575517
 GameObject:

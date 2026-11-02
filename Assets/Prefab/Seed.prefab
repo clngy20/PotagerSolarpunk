@@ -127,4 +127,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlantGrowth
   timeToRipe: 5
   timeToOverripe: 5
-  timeToBurst: 2
+  timeToBurst: 5
