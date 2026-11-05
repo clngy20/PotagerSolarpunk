@@ -27,12 +27,9 @@ public class PlantGrowth : MonoBehaviour
     public GrowthState CurrentState { get; private set; } = GrowthState.Seed;
 
     private float timer;
-    private Renderer rend;
 
-    private void Awake()
-    {
-        rend = GetComponent<Renderer>();
-    }
+    [SerializeField] private Animator animator;
+    [SerializeField] private Renderer rend;
 
     private void Start()
     {
@@ -41,6 +38,8 @@ public class PlantGrowth : MonoBehaviour
 
     private void Update()
     {
+        if (harvested) return;
+
         timer += Time.deltaTime;
 
         switch (CurrentState)
@@ -62,6 +61,11 @@ public class PlantGrowth : MonoBehaviour
         CurrentState = newState;
         Debug.Log($"{name} -> {newState}", this);
         ApplyColor(newState);
+
+        if (animator != null)
+        {
+            animator.SetInteger("State", (int)newState);
+        }
 
         if (newState == GrowthState.Burst)
         {
