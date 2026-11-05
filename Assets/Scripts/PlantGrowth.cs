@@ -28,8 +28,13 @@ public class PlantGrowth : MonoBehaviour
 
     private float timer;
 
+    //Animation
     [SerializeField] private Animator animator;
     [SerializeField] private Renderer rend;
+
+    //Explosion et récolte
+    [SerializeField] private GameObject burstEffectPrefab;
+    [SerializeField] private GameObject harvestEffectPrefab;
 
     private void Start()
     {
@@ -59,7 +64,6 @@ public class PlantGrowth : MonoBehaviour
     private void SetState(GrowthState newState)
     {
         CurrentState = newState;
-        Debug.Log($"{name} -> {newState}", this);
         ApplyColor(newState);
 
         if (animator != null)
@@ -73,13 +77,16 @@ public class PlantGrowth : MonoBehaviour
         }
     }
 
-    //Destruction de la graine (légume plus tard)
+    //Destruction de la graine
     private void Burst()
     {
-        // Plus tard : son et particules d'éclatement ici
+        if (burstEffectPrefab != null)
+        {
+            Instantiate(burstEffectPrefab, transform.position, Quaternion.identity);
+        }
         Destroy(gameObject);
     }
-     
+
     public void Water()
     {
         if(CurrentState == GrowthState.Seed)
@@ -107,18 +114,33 @@ public class PlantGrowth : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (harvested || CurrentState != GrowthState.Ripe) return;
-        if (other.GetComponentInParent<DroneController>() == null) return;
-
+        if (harvested || CurrentState != GrowthState.Ripe)
+        {
+            return;
+        }
+        if (other.GetComponentInParent<DroneController>() == null)
+        {
+            return;
+        }
         Harvest();
     }
 
     private void Harvest()
     {
         harvested = true;
+
         if (scoreManager != null)
         {
             scoreManager.AddScore(scoreValue);
+        }
+        else
+        {
+            Debug.LogWarning($"{name} : pas de ScoreManager, score perdu", this);
+        }
+
+        if (harvestEffectPrefab != null)
+        {
+            Instantiate(harvestEffectPrefab, transform.position, Quaternion.identity);
         }
         Destroy(gameObject);
     }

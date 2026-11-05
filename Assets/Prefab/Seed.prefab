@@ -223,6 +223,8 @@ MonoBehaviour:
   scoreValue: 10
   animator: {fileID: 2029874305956178370}
   rend: {fileID: 128639228915238309}
+  burstEffectPrefab: {fileID: 8068738793559039878, guid: aa40340c72f4bf848a910b27d465bea0, type: 3}
+  harvestEffectPrefab: {fileID: 8068738793559039878, guid: 173112a71de01bc4a96a6eff5ed5c358, type: 3}
 --- !u!65 &2496335604251884993
 BoxCollider:
   m_ObjectHideFlags: 0
