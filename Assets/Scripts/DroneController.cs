@@ -9,8 +9,12 @@ public class DroneController : MonoBehaviour
     [SerializeField] private GameObject seedPrefab; // Prefab de la graine à planter
     [SerializeField] private float groundY = 0.1f; // Hauteur (Y) à laquelle la graine sera plantée
 
+    //WATER
     [SerializeField] private ParticleSystem waterParticles;
     [SerializeField] private float waterRadius = 0.5f;
+
+    //SCORE
+    [SerializeField] private ScoreManager scoreManager;
 
     private Vector2 moveDirection;
 
@@ -45,16 +49,15 @@ public class DroneController : MonoBehaviour
         transform.Translate(horizontalMovement * moveSpeed * Time.deltaTime);
     }
 
-    public void ReadMoveInput(InputAction.CallbackContext context)
-    {
-        moveDirection = context.ReadValue<Vector2>();
-    }
-
     private void OnPlantPressed(InputAction.CallbackContext context)
     {
         // Même x/z que le drone, mai y au sol : la graine est sous le drone
         Vector3 seedPosition = new Vector3(transform.position.x, groundY, transform.position.z);
-        Instantiate(seedPrefab, seedPosition, Quaternion.identity);
+        GameObject seed = Instantiate(seedPrefab, seedPosition, Quaternion.identity);
+        if (seed.TryGetComponent(out PlantGrowth plant))
+        {
+            plant.Initialize(scoreManager);
+        }
 
     }
 

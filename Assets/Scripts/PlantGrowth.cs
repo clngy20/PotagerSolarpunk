@@ -19,6 +19,11 @@ public class PlantGrowth : MonoBehaviour
     [SerializeField] private Color ripeColor = Color.green;
     [SerializeField] private Color overripeColor = new Color(0.5f, 0.3f, 0f);
 
+    //SCORE
+    [SerializeField] private int scoreValue = 10;
+    private ScoreManager scoreManager;
+    private bool harvested;
+
     public GrowthState CurrentState { get; private set; } = GrowthState.Seed;
 
     private float timer;
@@ -70,7 +75,7 @@ public class PlantGrowth : MonoBehaviour
         // Plus tard : son et particules d'éclatement ici
         Destroy(gameObject);
     }
-
+     
     public void Water()
     {
         if(CurrentState == GrowthState.Seed)
@@ -87,5 +92,30 @@ public class PlantGrowth : MonoBehaviour
             GrowthState.Overripe => overripeColor,
             _ => seedColor
         };
+    }
+
+    //SCORE
+    // Appelée par le drone juste après l'Instantiate (injection)
+    public void Initialize(ScoreManager manager)
+    {
+        scoreManager = manager;
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (harvested || CurrentState != GrowthState.Ripe) return;
+        if (other.GetComponentInParent<DroneController>() == null) return;
+
+        Harvest();
+    }
+
+    private void Harvest()
+    {
+        harvested = true;
+        if (scoreManager != null)
+        {
+            scoreManager.AddScore(scoreValue);
+        }
+        Destroy(gameObject);
     }
 }

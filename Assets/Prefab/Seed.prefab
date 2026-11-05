@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 7544846771018533923}
   - component: {fileID: 6249771023527973991}
   - component: {fileID: 6152537993508035374}
-  - component: {fileID: 2970471940574694417}
   - component: {fileID: 7960644434391306737}
+  - component: {fileID: 2496335604251884993}
   m_Layer: 0
   m_Name: Seed
   m_TagString: Untagged
@@ -92,8 +92,28 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &2970471940574694417
-SphereCollider:
+--- !u!114 &7960644434391306737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1379875645139063990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 678d637876e59794c8ad6b81592b26f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlantGrowth
+  timeToRipe: 5
+  timeToOverripe: 5
+  timeToBurst: 5
+  waterBonusPerSecond: 1
+  seedColor: {r: 1, g: 1, b: 1, a: 1}
+  ripeColor: {r: 0, g: 1, b: 0, a: 1}
+  overripeColor: {r: 0.5, g: 0.3, b: 0, a: 1}
+  scoreValue: 10
+--- !u!65 &2496335604251884993
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -111,23 +131,5 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7960644434391306737
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1379875645139063990}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 678d637876e59794c8ad6b81592b26f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlantGrowth
-  timeToRipe: 5
-  timeToOverripe: 5
-  timeToBurst: 5
-  seedColor: {r: 1, g: 1, b: 1, a: 1}
-  ripeColor: {r: 0, g: 1, b: 0, a: 1}
-  overripeColor: {r: 0.5, g: 0.3, b: 0, a: 1}
+  m_Size: {x: 2.5, y: 50, z: 2.5}
+  m_Center: {x: 0, y: 25, z: 0}
