@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 128639228915238309}
   - component: {fileID: 3374261774493935684}
   m_Layer: 0
-  m_Name: Body
+  m_Name: SeedModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -67,7 +67,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: b9e93d3c8f234be4a8a9470d6d4c7943, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -143,6 +143,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7595941028516111084}
+  - {fileID: 8645957390036402376}
   m_Father: {fileID: 7544846771018533923}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &2029874305956178370
@@ -178,6 +179,7 @@ GameObject:
   - component: {fileID: 7544846771018533923}
   - component: {fileID: 7960644434391306737}
   - component: {fileID: 2496335604251884993}
+  - component: {fileID: 8492244042081053132}
   m_Layer: 0
   m_Name: Seed
   m_TagString: Untagged
@@ -218,13 +220,15 @@ MonoBehaviour:
   timeToBurst: 5
   waterBonusPerSecond: 1
   seedColor: {r: 1, g: 1, b: 1, a: 1}
-  ripeColor: {r: 0, g: 1, b: 0, a: 1}
-  overripeColor: {r: 0.5, g: 0.3, b: 0, a: 1}
+  ripeColor: {r: 1, g: 1, b: 1, a: 1}
+  overripeColor: {r: 0.54509807, g: 0.3529412, b: 0.16862746, a: 1}
   scoreValue: 10
   animator: {fileID: 2029874305956178370}
-  rend: {fileID: 128639228915238309}
+  renderers: []
   burstEffectPrefab: {fileID: 8068738793559039878, guid: aa40340c72f4bf848a910b27d465bea0, type: 3}
   harvestEffectPrefab: {fileID: 8068738793559039878, guid: 173112a71de01bc4a96a6eff5ed5c358, type: 3}
+  seedModel: {fileID: 392181828498056291}
+  carrotModel: {fileID: 8986736092354501234}
 --- !u!65 &2496335604251884993
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -246,3 +250,112 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 10, z: 1}
   m_Center: {x: 0, y: 5, z: 0}
+--- !u!114 &8492244042081053132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1379875645139063990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 678d637876e59794c8ad6b81592b26f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlantGrowth
+  timeToRipe: 5
+  timeToOverripe: 5
+  timeToBurst: 5
+  waterBonusPerSecond: 1
+  seedColor: {r: 1, g: 1, b: 1, a: 1}
+  ripeColor: {r: 1, g: 0.9529412, b: 0.6901961, a: 1}
+  overripeColor: {r: 0.54509807, g: 0.3529412, b: 0.16862746, a: 1}
+  scoreValue: 10
+  animator: {fileID: 0}
+  renderers: []
+  burstEffectPrefab: {fileID: 0}
+  harvestEffectPrefab: {fileID: 0}
+  seedModel: {fileID: 0}
+  carrotModel: {fileID: 0}
+--- !u!1001 &8103705318857762595
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6270041260989669951}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 52df4552a158bb04a9f7133f67e96cc1, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.30708
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 52df4552a158bb04a9f7133f67e96cc1, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5380534
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 52df4552a158bb04a9f7133f67e96cc1, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.30708
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 52df4552a158bb04a9f7133f67e96cc1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 52df4552a158bb04a9f7133f67e96cc1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.41421
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 52df4552a158bb04a9f7133f67e96cc1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 52df4552a158bb04a9f7133f67e96cc1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 52df4552a158bb04a9f7133f67e96cc1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 52df4552a158bb04a9f7133f67e96cc1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 52df4552a158bb04a9f7133f67e96cc1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 52df4552a158bb04a9f7133f67e96cc1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 52df4552a158bb04a9f7133f67e96cc1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 52df4552a158bb04a9f7133f67e96cc1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 52df4552a158bb04a9f7133f67e96cc1, type: 3}
+      propertyPath: m_Name
+      value: CarrotModel
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 52df4552a158bb04a9f7133f67e96cc1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 52df4552a158bb04a9f7133f67e96cc1, type: 3}
+--- !u!4 &8645957390036402376 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 52df4552a158bb04a9f7133f67e96cc1, type: 3}
+  m_PrefabInstance: {fileID: 8103705318857762595}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8986736092354501234 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 52df4552a158bb04a9f7133f67e96cc1, type: 3}
+  m_PrefabInstance: {fileID: 8103705318857762595}
+  m_PrefabAsset: {fileID: 0}

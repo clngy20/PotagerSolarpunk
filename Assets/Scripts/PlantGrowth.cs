@@ -30,11 +30,15 @@ public class PlantGrowth : MonoBehaviour
 
     //Animation
     [SerializeField] private Animator animator;
-    [SerializeField] private Renderer rend;
+    [SerializeField] private Renderer[] renderers;
 
     //Explosion et récolte
     [SerializeField] private GameObject burstEffectPrefab;
     [SerializeField] private GameObject harvestEffectPrefab;
+
+    [Header("Visuels par état")]
+    [SerializeField] private GameObject seedModel;
+    [SerializeField] private GameObject carrotModel;
 
     private void Start()
     {
@@ -97,12 +101,28 @@ public class PlantGrowth : MonoBehaviour
 
     private void ApplyColor(GrowthState state)
     {
-        rend.material.color = state switch
+        // Quel modèle est visible
+        if (seedModel != null)
+        {
+            seedModel.SetActive(state == GrowthState.Seed);
+        }
+        if (carrotModel != null)
+        {
+            carrotModel.SetActive(state != GrowthState.Seed);
+        }
+
+        // Teinte (utile surtout pour la carotte pourrie)
+        Color color = state switch
         {
             GrowthState.Ripe => ripeColor,
             GrowthState.Overripe => overripeColor,
             _ => seedColor
         };
+
+        foreach (Renderer r in renderers)
+        {
+            r.material.color = color;
+        }
     }
 
     //SCORE

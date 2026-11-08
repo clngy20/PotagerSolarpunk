@@ -18,6 +18,10 @@ public class DroneController : MonoBehaviour
 
     private Vector2 moveDirection;
 
+    [Header("Limites du potage")]
+    [SerializeField] private Vector2 mapMin = new Vector2(-11.5f, -7f); // Coin bas gauche du potager
+    [SerializeField] private Vector2 mapMax = new Vector2(1.2f, 5.8f); // Coin haut droit du potager
+
     private void Awake()
     {
         controls = new PlayerControls();
@@ -43,10 +47,16 @@ public class DroneController : MonoBehaviour
 
     private void MoveDrone()
     {
-        moveDirection = controls.Player.Move.ReadValue<Vector2>(); // Lit la direction (clavier OU manette)
+        moveDirection = controls.Player.Move.ReadValue<Vector2>();
 
         Vector3 horizontalMovement = new Vector3(moveDirection.x, 0f, moveDirection.y);
-        transform.Translate(horizontalMovement * moveSpeed * Time.deltaTime);
+        transform.Translate(horizontalMovement * moveSpeed * Time.deltaTime, Space.World);
+
+        // Le drone ne sort pas du potager
+        Vector3 pos = transform.position;
+        pos.x = Mathf.Clamp(pos.x, mapMin.x, mapMax.x);
+        pos.z = Mathf.Clamp(pos.z, mapMin.y, mapMax.y);
+        transform.position = pos;
     }
 
     private void OnPlantPressed(InputAction.CallbackContext context)
@@ -91,5 +101,13 @@ public class DroneController : MonoBehaviour
     {
         Gizmos.color = Color.cyan;
         Gizmos.DrawWireSphere(new Vector3(transform.position.x, groundY, transform.position.z), waterRadius);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Vector3 center = new Vector3((mapMin.x + mapMax.x) / 2f, groundY, (mapMin.y + mapMax.y) / 2f);
+        Vector3 size = new Vector3(mapMax.x - mapMin.x, 0.1f, mapMax.y - mapMin.y);
+        Gizmos.DrawWireCube(center, size);
     }
 }
