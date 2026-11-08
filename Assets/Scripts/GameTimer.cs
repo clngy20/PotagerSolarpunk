@@ -36,7 +36,7 @@ public class GameTimer : MonoBehaviour
     private void EndGame()
     {
         ended = true;
-        GameResult.LastScore = scoreManager.Score;
+        GameResult.Submit(scoreManager.Score);
         SceneManager.LoadScene("End");
     }
 }
