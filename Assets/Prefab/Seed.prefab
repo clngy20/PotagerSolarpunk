@@ -219,12 +219,13 @@ MonoBehaviour:
   timeToOverripe: 5
   timeToBurst: 5
   waterBonusPerSecond: 1
-  seedColor: {r: 1, g: 1, b: 1, a: 1}
-  ripeColor: {r: 1, g: 1, b: 1, a: 1}
+  seedColor: {r: 1, g: 1, b: 1, a: 0}
+  ripeColor: {r: 1, g: 1, b: 1, a: 0}
   overripeColor: {r: 0.54509807, g: 0.3529412, b: 0.16862746, a: 1}
   scoreValue: 10
   animator: {fileID: 2029874305956178370}
-  renderers: []
+  renderers:
+  - {fileID: 7473636361780034471}
   burstEffectPrefab: {fileID: 8068738793559039878, guid: aa40340c72f4bf848a910b27d465bea0, type: 3}
   harvestEffectPrefab: {fileID: 8068738793559039878, guid: 173112a71de01bc4a96a6eff5ed5c358, type: 3}
   seedModel: {fileID: 392181828498056291}
@@ -267,15 +268,15 @@ MonoBehaviour:
   timeToBurst: 5
   waterBonusPerSecond: 1
   seedColor: {r: 1, g: 1, b: 1, a: 1}
-  ripeColor: {r: 1, g: 0.9529412, b: 0.6901961, a: 1}
+  ripeColor: {r: 1, g: 1, b: 1, a: 1}
   overripeColor: {r: 0.54509807, g: 0.3529412, b: 0.16862746, a: 1}
   scoreValue: 10
   animator: {fileID: 0}
   renderers: []
   burstEffectPrefab: {fileID: 0}
   harvestEffectPrefab: {fileID: 0}
-  seedModel: {fileID: 0}
-  carrotModel: {fileID: 0}
+  seedModel: {fileID: 392181828498056291}
+  carrotModel: {fileID: 8986736092354501234}
 --- !u!1001 &8103705318857762595
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -349,6 +350,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52df4552a158bb04a9f7133f67e96cc1, type: 3}
+--- !u!23 &7473636361780034471 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 52df4552a158bb04a9f7133f67e96cc1, type: 3}
+  m_PrefabInstance: {fileID: 8103705318857762595}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8645957390036402376 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 52df4552a158bb04a9f7133f67e96cc1, type: 3}

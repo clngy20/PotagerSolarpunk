@@ -111,17 +111,18 @@ public class PlantGrowth : MonoBehaviour
             carrotModel.SetActive(state != GrowthState.Seed);
         }
 
-        // Teinte (utile surtout pour la carotte pourrie)
-        Color color = state switch
+        // On ne teinte que la carotte pourrie ; sinon on garde les couleurs d'origine
+        if (state != GrowthState.Overripe)
         {
-            GrowthState.Ripe => ripeColor,
-            GrowthState.Overripe => overripeColor,
-            _ => seedColor
-        };
+            return;
+        }
 
         foreach (Renderer r in renderers)
         {
-            r.material.color = color;
+            foreach (Material m in r.materials)
+            {
+                m.color = overripeColor;
+            }
         }
     }
 
@@ -152,10 +153,6 @@ public class PlantGrowth : MonoBehaviour
         if (scoreManager != null)
         {
             scoreManager.AddScore(scoreValue);
-        }
-        else
-        {
-            Debug.LogWarning($"{name} : pas de ScoreManager, score perdu", this);
         }
 
         if (harvestEffectPrefab != null)
