@@ -16,6 +16,7 @@ public class DroneController : MonoBehaviour
     //WATER
     [SerializeField] private ParticleSystem waterParticles; //Jet d'eau
     [SerializeField] private float waterRadius = 0.5f; //Rayon de la zone arrosée au sol
+    [SerializeField] private AudioSource WaterSong;
 
     //SCORE
     [SerializeField] private ScoreManager scoreManager; //Donné à chaque plante à sa création
@@ -86,25 +87,40 @@ public class DroneController : MonoBehaviour
     //Tant que la touche est maintenue : particules + bonus de croissance aux plantes sous le drone
     private void HandleWatering()
     {
-        bool isWatering = controls.Player.Water.IsPressed(); //Vérifie si le bouton d'arrosage est enfoncé
+        bool isWatering = controls.Player.Water.IsPressed();
 
-        //Lance ou arrête les particules selon l'état de la touche
+        // Début de l'arrosage
         if (isWatering && !waterParticles.isPlaying)
         {
             waterParticles.Play();
         }
-        else if (!isWatering && waterParticles.isPlaying)
+
+        // Le son suit l'état de la touche
+        if (isWatering && !WaterSong.isPlaying)
         {
-            waterParticles.Stop();
+            WaterSong.Play();
         }
 
-        if (!isWatering) return; //Rien à arroser si la touche n'est pas enfoncée
+        // Fin de l'arrosage
+        if (!isWatering)
+        {
+            if (waterParticles.isPlaying)
+            {
+                waterParticles.Stop();
+            }
 
-        //Zone d'arrosage : une sphère au sol, sous le drone
+            if (WaterSong.isPlaying)
+            {
+                WaterSong.Stop();
+            }
+
+            return;
+        }
+
+        // Zone d'arrosage sous le drone
         Vector3 center = new Vector3(transform.position.x, groundY, transform.position.z);
         Collider[] hits = Physics.OverlapSphere(center, waterRadius);
 
-        //Chaque plante touchée reçoit le bonus de croissance
         foreach (Collider hit in hits)
         {
             if (hit.TryGetComponent(out PlantGrowth plant))
