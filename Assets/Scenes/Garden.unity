@@ -6668,6 +6668,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7180082297962119353}
     - target: {fileID: 1483586820928915134, guid: 9ab3b0f1be111ed4bb95f268a6017e54, type: 3}
+      propertyPath: plantSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 44cee155fb385c04da77ef163238439d, type: 3}
+    - target: {fileID: 1483586820928915134, guid: 9ab3b0f1be111ed4bb95f268a6017e54, type: 3}
       propertyPath: scoreManager
       value: 
       objectReference: {fileID: 171204709}
@@ -6741,7 +6745,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: e61e36c58a4caac4b976a0731a5794fe, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0

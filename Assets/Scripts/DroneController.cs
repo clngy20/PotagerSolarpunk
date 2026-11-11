@@ -12,6 +12,8 @@ public class DroneController : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f; //Vitesse de déplacement
     [SerializeField] private GameObject seedPrefab; //Prefab de la graine à planter
     [SerializeField] private float groundY = 0.1f; //Hauteur (Y) à laquelle la graine sera plantée
+    [SerializeField] private AudioClip plantSound; // son joué à la plantation
+    [SerializeField][Range(0f, 1f)] private float plantVolume = 0.6f; // volume du son (jamais à 1)
 
     //WATER
     [SerializeField] private ParticleSystem waterParticles; //Jet d'eau
@@ -71,16 +73,19 @@ public class DroneController : MonoBehaviour
     //Appelée quand on appuie sur la touche Planter
     private void OnPlantPressed(InputAction.CallbackContext context)
     {
-        //Même x/z que le drone, mais y au sol : la graine est sous le drone
         Vector3 seedPosition = new Vector3(transform.position.x, groundY, transform.position.z);
         GameObject seed = Instantiate(seedPrefab, seedPosition, Quaternion.identity);
 
-        //la plante reçoit le score au moment de sa création
+        // Son de plantation, joué à l'endroit de la graine
+        if (plantSound != null)
+        {
+            AudioSource.PlayClipAtPoint(plantSound, seedPosition, plantVolume);
+        }
+
         if (seed.TryGetComponent(out PlantGrowth plant))
         {
             plant.Initialize(scoreManager);
         }
-
     }
 
     //WATER

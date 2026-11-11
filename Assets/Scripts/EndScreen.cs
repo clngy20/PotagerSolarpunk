@@ -9,11 +9,18 @@ public class EndScreen : MonoBehaviour
 
     private void Start()
     {
-        scoreText.text = $"Score final : {GameResult.LastScore}";
+        scoreText.text = $"Score : {GameResult.LastScore}";
 
-        bestScoreText.text = GameResult.IsNewBest
-            ? $"Nouveau record : {GameResult.BestScore} !"
-            : $"Meilleur score : {GameResult.BestScore}";
+        if (GameResult.IsNewBest)
+        {
+            // Record battu : texte doré
+            bestScoreText.text = $"Nouveau record ! {GameResult.BestScore}";
+            bestScoreText.color = new Color(0.91f, 0.64f, 0.09f); // or
+        }
+        else
+        {
+            bestScoreText.text = $"Meilleur score : {GameResult.BestScore}";
+        }
     }
 
     public void Replay()
