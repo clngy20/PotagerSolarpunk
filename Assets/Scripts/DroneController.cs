@@ -49,6 +49,13 @@ public class DroneController : MonoBehaviour
 
     private void Update()
     {
+        //Jeu en pause : on coupe l'eau et le drone ne fait rien
+        if (Time.timeScale == 0f)
+        {
+            if (waterParticles.isPlaying) waterParticles.Stop();
+            return;
+        }
+
         //Appelées à chaque image
         MoveDrone();
         HandleWatering();
@@ -76,7 +83,7 @@ public class DroneController : MonoBehaviour
         Vector3 seedPosition = new Vector3(transform.position.x, groundY, transform.position.z);
         GameObject seed = Instantiate(seedPrefab, seedPosition, Quaternion.identity);
 
-        // Son de plantation, joué à l'endroit de la graine
+        //Son de plantation, joué à l'endroit de la graine
         if (plantSound != null)
         {
             AudioSource.PlayClipAtPoint(plantSound, seedPosition, plantVolume);
@@ -86,6 +93,9 @@ public class DroneController : MonoBehaviour
         {
             plant.Initialize(scoreManager);
         }
+
+        //Pas de plantation pendant la pause
+        if (Time.timeScale == 0f) return;
     }
 
     //WATER
@@ -103,7 +113,7 @@ public class DroneController : MonoBehaviour
         // Le son suit l'état de la touche
         if (isWatering && !WaterSong.isPlaying)
         {
-            WaterSong.Play();
+            WaterSong.UnPause();
         }
 
         // Fin de l'arrosage
@@ -116,7 +126,7 @@ public class DroneController : MonoBehaviour
 
             if (WaterSong.isPlaying)
             {
-                WaterSong.Stop();
+                WaterSong.Pause();
             }
 
             return;

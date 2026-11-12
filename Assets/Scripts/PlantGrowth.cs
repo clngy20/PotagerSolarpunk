@@ -24,6 +24,13 @@ public class PlantGrowth : MonoBehaviour
     private ScoreManager scoreManager;
     private bool harvested;
 
+    //AUDIO
+    [Header("Audio")]
+    [SerializeField] private AudioClip ripeSound;    //Ding quand le légume devient mûr
+    [SerializeField] private AudioClip burstSound;   //Son d'explosion
+    [SerializeField] private AudioClip harvestSound; //Son de récolte
+    [SerializeField][Range(0f, 1f)] private float soundVolume = 0.7f;
+
     public GrowthState CurrentState { get; private set; } = GrowthState.Seed;
 
     private float timer;
@@ -53,13 +60,13 @@ public class PlantGrowth : MonoBehaviour
 
         switch (CurrentState)
         {
-            case GrowthState.Seed when timer>= timeToRipe:
+            case GrowthState.Seed when timer >= timeToRipe:
                 SetState(GrowthState.Ripe);
                 break;
             case GrowthState.Ripe when timer >= timeToRipe + timeToOverripe:
                 SetState(GrowthState.Overripe);
                 break;
-            case GrowthState.Overripe when timer>= timeToRipe + timeToOverripe + timeToBurst:
+            case GrowthState.Overripe when timer >= timeToRipe + timeToOverripe + timeToBurst:
                 SetState(GrowthState.Burst);
                 break;
         }
@@ -75,9 +82,29 @@ public class PlantGrowth : MonoBehaviour
             animator.SetInteger("State", (int)newState);
         }
 
+        //Sons d'état (PlayClipAtPoint : pas besoin d'AudioSource sur l'objet)
+        switch (newState)
+        {
+            case GrowthState.Ripe:
+                PlaySound(ripeSound);
+                break;
+            case GrowthState.Burst:
+                PlaySound(burstSound);
+                break;
+        }
+
         if (newState == GrowthState.Burst)
         {
             Burst();
+        }
+    }
+
+    //Joue un clip à la position de la plante (crée un AudioSource temporaire)
+    private void PlaySound(AudioClip clip)
+    {
+        if (clip != null)
+        {
+            AudioSource.PlayClipAtPoint(clip, transform.position, soundVolume);
         }
     }
 
@@ -93,7 +120,7 @@ public class PlantGrowth : MonoBehaviour
 
     public void Water()
     {
-        if(CurrentState == GrowthState.Seed)
+        if (CurrentState == GrowthState.Seed)
         {
             timer += waterBonusPerSecond * Time.deltaTime;
         }
@@ -154,6 +181,9 @@ public class PlantGrowth : MonoBehaviour
         {
             scoreManager.AddScore(scoreValue);
         }
+
+        //Son de récolte AVANT la destruction (sinon il serait coupé)
+        PlaySound(harvestSound);
 
         if (harvestEffectPrefab != null)
         {

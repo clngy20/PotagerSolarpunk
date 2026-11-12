@@ -5997,8 +5997,8 @@ Transform:
   m_GameObject: {fileID: 8465316527628765000}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5, y: 2, z: -0.56}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -5.0001, y: 1.9993, z: -0.55951}
+  m_LocalScale: {x: 1.0495, y: 1.0495, z: 1.0495}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4102632968827442704}
@@ -6098,8 +6098,11 @@ MonoBehaviour:
   moveSpeed: 5
   seedPrefab: {fileID: 1379875645139063990, guid: 578f2dd725fc73649a4db72dfda69ce5, type: 3}
   groundY: 0.1
+  plantSound: {fileID: 0}
+  plantVolume: 0.6
   waterParticles: {fileID: 3370014828574939848}
   waterRadius: 0.5
+  WaterSong: {fileID: 0}
   scoreManager: {fileID: 0}
   mapMin: {x: -11.5, y: -7}
   mapMax: {x: 1.2, y: 5.8}

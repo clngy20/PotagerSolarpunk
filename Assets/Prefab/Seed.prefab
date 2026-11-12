@@ -230,6 +230,10 @@ MonoBehaviour:
   harvestEffectPrefab: {fileID: 8068738793559039878, guid: 173112a71de01bc4a96a6eff5ed5c358, type: 3}
   seedModel: {fileID: 392181828498056291}
   carrotModel: {fileID: 8986736092354501234}
+  audioSource: {fileID: 0}
+  ripeSound: {fileID: 8300000, guid: 6b2330e1bc2db27488e05d4873b570b0, type: 3}
+  burstSound: {fileID: 0}
+  harvestSound: {fileID: 0}
 --- !u!65 &2496335604251884993
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -277,6 +281,10 @@ MonoBehaviour:
   harvestEffectPrefab: {fileID: 0}
   seedModel: {fileID: 392181828498056291}
   carrotModel: {fileID: 8986736092354501234}
+  audioSource: {fileID: 0}
+  ripeSound: {fileID: 8300000, guid: 6b2330e1bc2db27488e05d4873b570b0, type: 3}
+  burstSound: {fileID: 0}
+  harvestSound: {fileID: 0}
 --- !u!1001 &8103705318857762595
 PrefabInstance:
   m_ObjectHideFlags: 0
